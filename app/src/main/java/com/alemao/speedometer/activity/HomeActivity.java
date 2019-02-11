@@ -36,8 +36,11 @@ public class HomeActivity extends AppCompatActivity {
     private TextView txtLon;
     private TextView txtLat;
     private TextView txtAlt;
+    private TextView txtAltError;
     private TextView txtInc;
+    private TextView txtIncError;
     private TextView txtSpeed;
+    private TextView txtSpeedError;
     private TextView txtAcu;
     private TextView txtTime;
 
@@ -56,8 +59,11 @@ public class HomeActivity extends AppCompatActivity {
         txtLon = findViewById(R.id.home_lon);
         txtLat = findViewById(R.id.home_lat);
         txtAlt = findViewById(R.id.home_alt);
+        txtAltError = findViewById(R.id.home_alt_error);
         txtInc = findViewById(R.id.home_inc);
+        txtIncError = findViewById(R.id.home_inc_error);
         txtSpeed = findViewById(R.id.home_speed);
+        txtSpeedError = findViewById(R.id.home_speed_error);
         txtAcu = findViewById(R.id.home_acu);
         txtTime = findViewById(R.id.home_time);
 
@@ -96,10 +102,17 @@ public class HomeActivity extends AppCompatActivity {
 
                 txtLon.setText(DegressFormater.format(locAvgFilter.getLongitude()));
                 txtLat.setText(DegressFormater.format(locAvgFilter.getLatitude()));
+                txtAcu.setText(String.format(getResources().getString(R.string.distance_error_formater), locAvgFilter.getAccuracy()));
+
                 txtAlt.setText(String.format(getResources().getString(R.string.distance_formater), locAvgFilter.getAltitude()));
+                txtAltError.setText(String.format(getResources().getString(R.string.distance_error_formater), locAvgFilter.getVerticalAccuracyMeters()));
+
                 txtInc.setText(String.format(getResources().getString(R.string.degress_formater),locAvgFilter.getBearing(),  (char)0x00B0));
+                txtIncError.setText(String.format(getResources().getString(R.string.degress_error_formater),locAvgFilter.getBearingAccuracyDegrees(),  (char)0x00B0));
+
                 txtSpeed.setText(String.format(getResources().getString(R.string.speed_formater), locAvgFilter.getSpeed()));
-                txtAcu.setText(String.format(getResources().getString(R.string.distance_formater), locAvgFilter.getAccuracy()));
+                txtSpeedError.setText(String.format(getResources().getString(R.string.speed_error_formater), locAvgFilter.getSpeedAccuracyMetersPerSecond()*3.6));
+
                 txtTime.setText(String.format(getResources().getString(R.string.time_formater),location.getTime()/1000));
             }
         }

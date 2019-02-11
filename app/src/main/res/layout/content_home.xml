@@ -56,6 +56,7 @@
         </LinearLayout>
     </LinearLayout>
     <TextView
+        android:id="@+id/home_acu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/error"
@@ -86,6 +87,7 @@
                 android:textSize="@dimen/txt_size_3"
                 android:text="@string/start_value"/>
             <TextView
+                android:id="@+id/home_alt_error"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="error(+/-): ---"/>
@@ -109,6 +111,7 @@
                 android:textSize="@dimen/txt_size_3"
                 android:text="@string/start_value"/>
             <TextView
+                android:id="@+id/home_inc_error"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="error(+/-):  ---"/>
@@ -133,6 +136,11 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/txt_size_4"
             android:text="@string/start_value"/>
+        <TextView
+            android:id="@+id/home_speed_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/error"/>
     </LinearLayout>
 
     <!--Acu/Time-->
@@ -154,7 +162,6 @@
                 android:textSize="@dimen/txt_size_1"
                 android:text="@string/acuracy" />
             <TextView
-                android:id="@+id/home_acu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/txt_size_2"
