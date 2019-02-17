@@ -6,6 +6,8 @@ public class DegressFormater {
         int aux, val = (int)d;   //pega apenas a parte inteira de d
         res = ""+val+""+((char)0x00B0)+" ";
 
+        if(d<0) d=-d;
+
         d-=val; //remove a parte inteira de d
         d*=60;  //passa o d para minutos
         val = (int)d;

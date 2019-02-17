@@ -7,6 +7,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
@@ -67,8 +68,6 @@ public class HomeActivity extends AppCompatActivity {
         txtAcu = findViewById(R.id.home_acu);
         txtTime = findViewById(R.id.home_time);
 
-        Permissao.validaPermissoes(1, this, permission);
-
         locManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
     }
 
@@ -84,12 +83,23 @@ public class HomeActivity extends AppCompatActivity {
         super.onPause();
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if( ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            locManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locListener);
+        }else {
+            Toast.makeText(this, "Despulpe, mas e imposivel calcular a velocidade  por GPS sem ter acesso a localizacao!", Toast.LENGTH_LONG).show();
+            finish();
+        }
+    }
+
     private void startUpdates(){
         if( ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             locManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locListener);
         }else{
-            Toast.makeText(this,"Despulpe, mas e imposivel calcular a velocidade  por GPS sem ter acesso a localizacao!", Toast.LENGTH_LONG).show();
-            finish();
+            Permissao.validaPermissoes(1, this, permission);
         }
     }
 
