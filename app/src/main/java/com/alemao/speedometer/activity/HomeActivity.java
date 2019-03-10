@@ -120,7 +120,7 @@ public class HomeActivity extends AppCompatActivity {
                 txtInc.setText(String.format(getResources().getString(R.string.degress_formater),locAvgFilter.getBearing(),  (char)0x00B0));
                 txtIncError.setText(String.format(getResources().getString(R.string.degress_error_formater),locAvgFilter.getBearingAccuracyDegrees(),  (char)0x00B0));
 
-                txtSpeed.setText(String.format(getResources().getString(R.string.speed_formater), locAvgFilter.getSpeed()));
+                txtSpeed.setText(String.format(getResources().getString(R.string.speed_formater), locAvgFilter.getSpeed()*3.6));
                 txtSpeedError.setText(String.format(getResources().getString(R.string.speed_error_formater), locAvgFilter.getSpeedAccuracyMetersPerSecond()*3.6));
 
                 txtTime.setText(String.format(getResources().getString(R.string.time_formater),location.getTime()/1000));
@@ -129,12 +129,12 @@ public class HomeActivity extends AppCompatActivity {
 
         @Override
         public void onProviderDisabled(String provider) {
-            // TODO Auto-generated method stub
+            Toast.makeText(HomeActivity.this, "GPS was turned off!!!", Toast.LENGTH_SHORT).show();
         }
 
         @Override
         public void onProviderEnabled(String provider) {
-            // TODO Auto-generated method stub
+            Toast.makeText(HomeActivity.this, "GPS was turned on", Toast.LENGTH_SHORT).show();
         }
 
         @Override
